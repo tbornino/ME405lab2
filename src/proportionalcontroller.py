@@ -42,6 +42,7 @@ class ProportionalController:
     def set_set_point(self, set_point):
         '''! 
         Sets the desired setpoint for the step response.
+        
         @param set_point  The desired steady state response value.  
         '''
         self._set_point = set_point
@@ -57,7 +58,8 @@ class ProportionalController:
         '''!
         Stores the data in a csv format.
         '''
-        self._data_list.append((utime.ticks_ms(),self.sensor_share.read()))
+        start_time = time.ticks_ms()
+        self._data_list.append((time.ticks_diff(time.ticks_ms(),start_time),self.sensor_share.read()))
         
     def print_data(self):
         '''!
