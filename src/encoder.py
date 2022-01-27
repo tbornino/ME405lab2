@@ -13,7 +13,7 @@ import pyb
 #   @details    The Encoder AR value 2**16-1.
 _ENC_PERIOD = 2 ** 16 - 1 # Ticks overflow period for the encoder
 
-class Encoder:
+class EncoderDriver:
     '''!Interface with quadrature encoders. This class is a driver for
         quadrature encoders. It uses the timer functions of the nucleo board.
         It provides functions for getting position while being safe from
