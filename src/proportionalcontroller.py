@@ -69,6 +69,6 @@ class ProportionalController:
         '''!
         Prints each line in the data list in a comma separated format.
         '''
-        for data_point in data_list:
+        for data_point in self._data_list:
             print(f"{data_point[0]},{data_point[1]}")
             
