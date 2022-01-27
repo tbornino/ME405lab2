@@ -35,7 +35,7 @@ class ProportionalController:
         @return The actuation value to fix steady state error.
         '''
         error = self._sensor_share.read() - self._set_point
-        actuation_value = -self._gain*error
+        actuation_value = self._gain*error
         self.data_store()
         if actuation_value > 100:
             actuation_value = 100

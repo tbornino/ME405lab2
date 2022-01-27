@@ -46,17 +46,19 @@ if __name__ == '__main__':
 #     # Read time length of step response from serial port
 #     _stepResponseTime = float(input())
     
+    encoder1.zero()
     pController1.set_set_point(360*(PPR/360))
-    pController1.set_gain(0.75*(360/PPR))
-    _stepResponseTime = 5
+    pController1.set_gain(0.3*(360/PPR))
+    _stepResponseTime = 20
     
     # Run a second step response when serial port reads 's'
-    if input() == b's':
+    if True : # input() == b's':
         
         try:
             
             while _stepResponseTime > 0:
                 encoder_share.write(encoder1.read()) # read encoder position
+                print("position", encoder_share.read())
                 motor1.set_duty_cycle(pController1.run()) # set motor duty
                 time.sleep_ms(10)
                 _stepResponseTime -= 0.010
@@ -65,5 +67,5 @@ if __name__ == '__main__':
             print('Done!')
             
         except KeyboardInterrupt:
-            
+            motor1.set_duty_cycle(0)
             print('Ending Step Response...')
