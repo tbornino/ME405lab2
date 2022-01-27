@@ -34,7 +34,7 @@ class ProportionalController:
         Then we append the stored data list with a tuple of values. 
         @return The actuation value to fix steady state error.
         '''
-        error = self._sensor_share.read() - self.set_point
+        error = self._sensor_share.read() - self._set_point
         actuation_value = -self.gain*error
         data_store()
         return actuation_value
