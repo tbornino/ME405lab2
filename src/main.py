@@ -10,6 +10,7 @@
 '''
 
 import time
+import pyb
 
 import shares
 import encoder
@@ -28,8 +29,7 @@ if __name__ == '__main__':
     encoder1 = encoder.EncoderDriver(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4)
     
     # Instantiate proportional controller 1
-    pController1 = proportionalcontroller.ProportionalController(
-                       setpoint = 0, proportionalGain = 1, encoder_share)
+    pController1 = proportionalcontroller.ProportionalController(0, 1, encoder_share)
     
     # Instantiate motor 1 with default pins and timer
     motor1 = motor.MotorDriver(pyb.Pin.board.PA10, pyb.Pin.board.PB4,
