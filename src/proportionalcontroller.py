@@ -35,8 +35,12 @@ class ProportionalController:
         @return The actuation value to fix steady state error.
         '''
         error = self._sensor_share.read() - self._set_point
-        actuation_value = -self.gain*error
-        data_store()
+        actuation_value = -self._gain*error
+        self.data_store()
+        if actuation_value > 100:
+            actuation_value = 100
+        elif actuation_value < -100:
+            actuation_value = -100
         return actuation_value
     
     def set_set_point(self, set_point):
@@ -59,7 +63,7 @@ class ProportionalController:
         Stores the data in a csv format.
         '''
         start_time = time.ticks_ms()
-        self._data_list.append((time.ticks_diff(time.ticks_ms(),start_time),self.sensor_share.read()))
+        self._data_list.append((time.ticks_diff(time.ticks_ms(),start_time),self._sensor_share.read()))
         
     def print_data(self):
         '''!
