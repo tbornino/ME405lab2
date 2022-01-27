@@ -13,18 +13,18 @@ class ProportionalController:
     '''! 
     
     '''
-    def __init__ (self, set_point, gain, enc_share):
+    def __init__ (self, set_point, gain, sensor_share):
         '''! 
         Creates a proportional controller by initializing setpoints 
-        @param setpoint    The initial desired location of the step response  
-        @param kp          The proportional gain for the controller.
-        @param enc_share   A share the contains the encoder position
-        @param data_list   A list that stores the data
+        @param setpoint       The initial desired location of the step response  
+        @param gain           The proportional gain for the controller.
+        @param sensor_share   A share the contains the read position from sensor
+        @param data_list      A list that stores the data
         
         '''
         self._set_point = set_point
         self._gain = gain
-        self._enc_share = enc_share
+        self._sensor_share = sensor_share
         self._data_list = []
         
     def run(self):
@@ -32,7 +32,8 @@ class ProportionalController:
         Continuously runs the control algorithm.
         
         '''
-        actuation_value = 
+        error = self._sensor_share.read() - self.set_point
+        actuation_value = -self.gain*error
         data_store()
         return actuation_value
     
@@ -54,7 +55,7 @@ class ProportionalController:
         '''!
         Stores the data in a csv format
         '''
-        self._data_list.append((utime.ticks_ms(),self.enc_share.read()))
+        self._data_list.append((utime.ticks_ms(),self.sensor_share.read()))
         
     def print_data(self):
         for data_point in data_list:
