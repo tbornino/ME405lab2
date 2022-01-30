@@ -15,9 +15,10 @@ a function that prints all the data as a string. This printed list of data is la
 produced by the main code running on the microcontroller. 
 
 ## Step Response Plots
-![Step Response 1: K_P = 1](TestPic.jpg)
-<b>Fig.1 - K_P = 1</b>
-</figcaption align = "center">
+| ![Step Response 1: K_P = 1](TestPic.jpg) |
+|:--:|
+|**Figure 1: K~P~ = 1**|
+
 
 ![Step Response 2: K_P = 2](TestPic2.png)
 
