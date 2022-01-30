@@ -13,6 +13,9 @@ class PIDController:
     '''! 
     This class implements a generic proportional controller.
     '''
+    ## Number of times the controller runs before a data sample is stored
+    self.data_store_counter = 10
+    
     def __init__ (self, set_point, Kp, Ki, Kd, sensor_share):
         '''! 
         Creates a proportional controller by initializing setpoints and gains
@@ -38,8 +41,14 @@ class PIDController:
         
         ##  @brief      Step response start time
         self.start time = None
+        
+        self._last_time = 0
         self._last_error = 0
         self._Iduty = 0
+        
+        # Active Data Store Counter
+        self._counter = self.data_store_counter
+        
         
     def run(self):
         '''! 
@@ -50,20 +59,28 @@ class PIDController:
         
         @return The actuation value to fix steady state error.
         '''
+        # Store initial step time
+        if self.start_time == None:
+            self.start_time = time.ticks_ms()
+            self._last_time = self.start_time
+        
         # Calculate the current error in position
         error = self._sensor_share.read() - self._set_point
+        curr_time = time.ticks_diff(time.ticks_ms(),self.start_time)
         
         # Calculate the PID actuation value
         Pduty = self._Kp*error
-        self._Iduty += self._Ki*error*
-                       (self.data_list[-1, 0] - self.data_list[-2, 0])
-        Dduty = self._Kd*(error-self._last_error)/
-                         (self.data_list[-1, 0] - self.data_list[-2, 0])
+        self._Iduty += self._Ki*error*(curr_time - self._last_time)
+        Dduty = self._Kd*(error-self._last_error)/(curr_time - self._last_time)
         
         actuation_value = Pduty + self_Iduty + Dduty
         
         # Store the time and position data
-        self.data_store()
+        if self._counter <= 0:
+            self.data_store()
+            self._counter = self.data_store_counter
+        else:
+            self._counter-=1
         
         # Filter saturated values
         if actuation_value > 100:
@@ -71,8 +88,9 @@ class PIDController:
         elif actuation_value < -100:
             actuation_value = -100
         
-        # Store error for next iteration
+        # Store values for next iteration
         self._last_error = error
+        self._last_time = curr_time
         
         return actuation_value
     
@@ -102,10 +120,7 @@ class PIDController:
     def data_store(self):
         '''!
         Stores the data in a csv format.
-        '''
-        if self.start_time == None:
-            self.start_time = time.ticks_ms()
-            
+        '''            
         self.data_list.append((time.ticks_diff(time.ticks_ms(),self.start_time),
                                 self._sensor_share.read()))
         
@@ -119,6 +134,7 @@ class PIDController:
         # Reset variables for next step response 
         self.data_list = []
         self.start_time = None
+        self._last_time = 0
         self._last_error = 0
         self._Iduty = 0
             
