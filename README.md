@@ -15,3 +15,4 @@ a function that prints all the data as a string. This printed list of data is la
 produced by the main code running on the microcontroller. 
 
 ## Step Response Plots
+![Step Response 1: K~P~ = 1](Test Pic.png)
