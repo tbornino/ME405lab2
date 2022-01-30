@@ -35,23 +35,24 @@ if __name__ == '__PIDmain__':
     motor1 = motor.MotorDriver(pyb.Pin.board.PA10, pyb.Pin.board.PB4,
                                pyb.Pin.board.PB5, pyb.Timer(3, freq=20000))
     
-#     # Read desired set point position from serial port
-#     # Converts degrees to ticks
-#     pController1.set_set_point(float(input())*(PPR/360))
-#     
-#     # Read desired pid gain constants from serial port
-#     # Converts dutyCycle/degree to dutyCycle/ticks
-#     pController1.set_gains(float(input())*(360/PPR), # Kp
-#                            float(input())*(360/PPR), # Ki
-#                            float(input())*(360/PPR)) # Kd
-#     
-#     # Read time length of step response from serial port
-#     _stepResponseTime = float(input())
+    # Read desired set point position from serial port
+    # Converts degrees to ticks
+    pController1.set_set_point(float(input())*(PPR/360))
+    
+    # Read desired pid gain constants from serial port
+    # Converts dutyCycle/degree to dutyCycle/ticks
+    pController1.set_gains(float(input())*(360/PPR), # Kp
+                           float(input())*(360/PPR), # Ki
+                           float(input())*(360/PPR)) # Kd
+    
+    # Read time length of step response from serial port
+    _stepResponseTime = float(input())
     
     encoder1.zero()
-    pidController1.set_set_point(360*(_PPR/360))
-    pidController1.set_gains(0.3*(360/_PPR), 0*(360/_PPR), 0*(360/_PPR))
-    _stepResponseTime = 20
+    
+#     pidController1.set_set_point(360*(_PPR/360))
+#     pidController1.set_gains(0.3*(360/_PPR), 0*(360/_PPR), 0*(360/_PPR))
+#     _stepResponseTime = 20
     
     # Run a second step response when serial port reads 's'
     if True : # input() == b's':
