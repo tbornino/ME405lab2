@@ -17,9 +17,14 @@ produced by the main code running on the microcontroller.
 ## Step Response Plots
 | ![Step Response 1: K_P = 1](TestPic.jpg) |
 |:--:|
-|**Figure 1: K<sub>P</sub>= 1**|
+|**Figure 1: K<sub>P</sub> = 1**|
 
 
-![Step Response 2: K_P = 2](TestPic2.png)
+| ![Step Response 2: K_P = 1](TestPic2.jpg) |
+|:--:|
+|**Figure 2: K<sub>P</sub> = 2**|
 
-![Step Response 3: K_P = 3](TestPic3.png)
+
+| ![Step Response 2: K_P = 2](TestPic3.jpg) |
+|:--:|
+|**Figure 3: K<sub>P</sub> = 3**|
