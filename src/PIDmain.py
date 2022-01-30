@@ -41,8 +41,9 @@ if __name__ == '__PIDmain__':
 #     
 #     # Read desired pid gain constants from serial port
 #     # Converts dutyCycle/degree to dutyCycle/ticks
-#     pController1.set_gains(float(input())*(360/PPR),
-#                            float(input())*(360/PPR), float(input())*(360/PPR))
+#     pController1.set_gains(float(input())*(360/PPR), # Kp
+#                            float(input())*(360/PPR), # Ki
+#                            float(input())*(360/PPR)) # Kd
 #     
 #     # Read time length of step response from serial port
 #     _stepResponseTime = float(input())

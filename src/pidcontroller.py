@@ -116,7 +116,8 @@ class PIDController:
         for data_point in self.data_list:
             print(f"{data_point[0]},{data_point[1]}")
         
-        # Reset variables for next step response
+        # Reset variables for next step response 
+        self.data_list = []
         self.start_time = None
         self._last_error = 0
         self._Iduty = 0
