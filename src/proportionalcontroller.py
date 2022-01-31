@@ -26,6 +26,7 @@ class ProportionalController:
         self._gain = gain
         self._sensor_share = sensor_share
         self._data_list = []
+        self._start_time = None
         
     def run(self):
         '''! 
@@ -62,8 +63,11 @@ class ProportionalController:
         '''!
         Stores the data in a csv format.
         '''
-        start_time = time.ticks_ms()
-        self._data_list.append((time.ticks_diff(time.ticks_ms(),start_time),self._sensor_share.read()))
+        if self._start_time == None:
+            self._start_time = time.ticks_ms()
+        self._data_list.append(
+            (time.ticks_diff(time.ticks_ms(),self._start_time),
+             self._sensor_share.read()))
         
     def print_data(self):
         '''!

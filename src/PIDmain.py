@@ -18,9 +18,9 @@ import pidcontroller
 import motor
 
 ##  @brief     Encoder PPR in ticks per revolution.
-_PPR = 256*4
+_PPR = 256*4*16
 
-if __name__ == '__PIDmain__':
+if __name__ == '__main__':
     
     # Instantiate share for motor position
     encoder_share = shares.Share(0)

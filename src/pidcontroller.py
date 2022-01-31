@@ -13,9 +13,7 @@ class PIDController:
     '''! 
     This class implements a generic proportional controller.
     '''
-    ## Number of times the controller runs before a data sample is stored
-    self.data_store_counter = 10
-    
+   
     def __init__ (self, set_point, Kp, Ki, Kd, sensor_share):
         '''! 
         Creates a proportional controller by initializing setpoints and gains
@@ -40,13 +38,15 @@ class PIDController:
         self.data_list = []
         
         ##  @brief      Step response start time
-        self.start time = None
+        self.start_time = None
         
         self._last_time = 0
         self._last_error = 0
         self._Iduty = 0
         
         # Active Data Store Counter
+        ## Number of times the controller runs before a data sample is stored
+        self.data_store_counter = 1
         self._counter = self.data_store_counter
         
         
@@ -73,7 +73,7 @@ class PIDController:
         self._Iduty += self._Ki*error*(curr_time - self._last_time)
         Dduty = self._Kd*(error-self._last_error)/(curr_time - self._last_time)
         
-        actuation_value = Pduty + self_Iduty + Dduty
+        actuation_value = Pduty + self._Iduty + Dduty
         
         # Store the time and position data
         if self._counter <= 0:
