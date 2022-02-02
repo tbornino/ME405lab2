@@ -40,7 +40,7 @@ class MotorDriver:
         @param level A signed integer holding the duty
                cycle of the voltage sent to the motor 
         '''
-        print ('Setting duty cycle to ' + str (level))
+#         print ('Setting duty cycle to ' + str (level))
         if level < 0 and level >= -100:
             ch1_level = 0
             ch2_level = -level
@@ -53,7 +53,7 @@ class MotorDriver:
         else:
             raise ValueError("level must be between -100 and 100")
         self._en_pin.high()
-        print("ch1: ", ch1_level, "ch2: ", ch2_level)
+#         print("ch1: ", ch1_level, "ch2: ", ch2_level)
         self._ch1.pulse_width_percent(ch1_level)
         self._ch2.pulse_width_percent(ch2_level)
 

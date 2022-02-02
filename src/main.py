@@ -18,10 +18,9 @@ import proportionalcontroller
 import motor
 
 ##  @brief     Encoder PPR in ticks per revolution.
-PPR = 256*4
+PPR = 256*4*16
 
 if __name__ == '__main__':
-    
     # Instantiate share for motor position
     encoder_share = shares.Share(0)
 
@@ -34,31 +33,32 @@ if __name__ == '__main__':
     # Instantiate motor 1 with default pins and timer
     motor1 = motor.MotorDriver(pyb.Pin.board.PA10, pyb.Pin.board.PB4,
                                pyb.Pin.board.PB5, pyb.Timer(3, freq=20000))
+#     inputs = input()
+#     print(inputs, '\n')
+    # Read desired set point position from serial port
+    # Converts degrees to ticks
+    pController1.set_set_point(float(input())*(PPR/360))
     
-#     # Read desired set point position from serial port
-#     # Converts degrees to ticks
-#     pController1.set_set_point(float(input())*(PPR/360))
-#     
-#     # Read desired proportional gain constant from serial port
-#     # Converts dutyCycle/degree to dutyCycle/ticks
-#     pController1.set_gain(float(input())*(360/PPR))
-#     
-#     # Read time length of step response from serial port
-#     _stepResponseTime = float(input())
+    # Read desired proportional gain constant from serial port
+    # Converts dutyCycle/degree to dutyCycle/ticks
+    pController1.set_gain(float(input())*(360/PPR))
+    
+    # Read time length of step response from serial port
+    _stepResponseTime = float(input())
     
     encoder1.zero()
-    pController1.set_set_point(360*(PPR/360))
-    pController1.set_gain(0.3*(360/PPR))
-    _stepResponseTime = 20
+#     pController1.set_set_point(360*(PPR/360))
+#     pController1.set_gain(0.3*(360/PPR))
+#     _stepResponseTime = 20
     
     # Run a second step response when serial port reads 's'
     if True : # input() == b's':
-        
+#         print("test test test")
         try:
             
             while _stepResponseTime > 0:
                 encoder_share.write(encoder1.read()) # read encoder position
-                print("position", encoder_share.read())
+#                 print("position", encoder_share.read())
                 motor1.set_duty_cycle(pController1.run()) # set motor duty
                 time.sleep_ms(10)
                 _stepResponseTime -= 0.010
