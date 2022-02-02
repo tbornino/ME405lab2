@@ -22,7 +22,7 @@ produced by the main code running on the microcontroller.
 The first proportional controller value shows that the system doesnt reach the desired setpoint, so we have to gradually
 increase it in order to get closer to our desired value for the second order system.
 
-| ![Step Response 2: K_P = 0.9](KP=0.9.png) |
+| ![Step Response 2: K_P = 0.9](plots/KP=0.9.png) |
 |:--:|
 |**Figure 2: K<sub>P</sub> = 0.9**|
 
@@ -35,6 +35,7 @@ increase it in order to get closer to our desired value for the second order sys
 | ![Step Response 4: K_P = 36](KP=36.png) |
 |:--:|
 |**Figure 3: K<sub>P</sub> = 36**|
+
 After tuning to a proper K_p value of about 1.2 in Figure 3, we wanted to find the point of marginal stability of the system
 and we found that a proportional controller value of K_p = 36 works well to give us marginal stability. We can tell it is 
 marginally stable by the near sinusoidal shape of the plot as it oscillates about the set point. 
