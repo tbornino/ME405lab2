@@ -15,7 +15,7 @@ a function that prints all the data as a string. This printed list of data is la
 produced by the main code running on the microcontroller. 
 
 ## Step Response Plots
-| ![Step Response 1: K_P = 0.3](KP=0.3.png) |
+| ![Step Response 1: K_P = 0.3](plots/KP=0.3.png) |
 |:--:|
 |**Figure 1: K<sub>P</sub> = 0.3**|
 
@@ -27,12 +27,12 @@ increase it in order to get closer to our desired value for the second order sys
 |**Figure 2: K<sub>P</sub> = 0.9**|
 
 
-| ![Step Response 3: K_P = 1.2](KP=1.2.png) |
+| ![Step Response 3: K_P = 1.2](plots/KP=1.2.png) |
 |:--:|
 |**Figure 3: K<sub>P</sub> = 1.2**|
 
-
-| ![Step Response 4: K_P = 36](KP=36.png) |
+Figure 3 shows an acceptable response with minimal overshoot and settles with a small amount of steady state error.
+| ![Step Response 4: K_P = 36](plots/KP=36.png) |
 |:--:|
 |**Figure 3: K<sub>P</sub> = 36**|
 
