@@ -2,6 +2,8 @@ from matplotlib import pyplot
 import serial
 import time
 
+PPR = 256*4*16
+
 while True:
     set_point_str = input("enter desired setpoint (degrees): ")
     p_gain_str = input("enter desired proportional gain (%/degree): ")
@@ -12,13 +14,16 @@ while True:
         float(p_gain_str)
         float(i_gain_str)
         float(d_gain_str)
-        float(set_point_str)
-        float(t_step_str)
+#         float(set_point_str)
+#         float(t_step_str)
+        t_step = float(t_step_str)
+        set_point = float(set_point_str)
     except ValueError:
         print("Invalid value given, try again")
     else:
         break
-t_step = float(t_step_str)
+# t_step = float(t_step_str)
+# set_point = float(set_point_str)
 
 port = "COM3"
 with serial.Serial(port, 115200, timeout=1) as ser_port:
@@ -34,6 +39,8 @@ with serial.Serial(port, 115200, timeout=1) as ser_port:
     ys = []
     for i in range(int(t_step * 100)):
         line = ser_port.readline()
+        if line == b'Done!\r\n':
+            break
         print(line)
         cells = line.split(b',')
         try:
@@ -46,6 +53,9 @@ with serial.Serial(port, 115200, timeout=1) as ser_port:
 print(xs)
 print(ys)
 pyplot.plot(xs, ys)
+t_max = xs[-1]
+set_point_ticks = set_point * PPR / 360
+pyplot.plot([0, t_max], [set_point_ticks, set_point_ticks], 'r--')
 pyplot.xlabel("time [ms]")
 pyplot.ylabel("position [ticks]")
 pyplot.show()

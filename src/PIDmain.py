@@ -37,13 +37,14 @@ if __name__ == '__main__':
     
     # Read desired set point position from serial port
     # Converts degrees to ticks
-    pController1.set_set_point(float(input())*(PPR/360))
+    pidController1.set_set_point(float(input())*(_PPR/360))
     
     # Read desired pid gain constants from serial port
     # Converts dutyCycle/degree to dutyCycle/ticks
-    pController1.set_gains(float(input())*(360/PPR), # Kp
-                           float(input())*(360/PPR), # Ki
-                           float(input())*(360/PPR)) # Kd
+    kp = float(input())*(360/_PPR)
+    ki = float(input())*(360/_PPR)
+    kd = float(input())*(360/_PPR)
+    pidController1.set_gains(kp, ki, kd) # Kd
     
     # Read time length of step response from serial port
     _stepResponseTime = float(input())
@@ -61,7 +62,7 @@ if __name__ == '__main__':
             
             while _stepResponseTime > 0:
                 encoder_share.write(encoder1.read()) # read encoder position
-                print("position", encoder_share.read())
+                #print("position", encoder_share.read())
                 motor1.set_duty_cycle(pidController1.run()) # set motor duty
                 time.sleep_ms(10)
                 _stepResponseTime -= 0.010
