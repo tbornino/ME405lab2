@@ -69,6 +69,7 @@ if __name__ == '__main__':
                 
             pidController1.print_data() # Print step response data to serial port
             print('Done!')
+            motor1.set_duty_cycle(0)
             
         except KeyboardInterrupt:
             motor1.set_duty_cycle(0)

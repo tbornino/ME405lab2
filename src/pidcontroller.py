@@ -72,7 +72,7 @@ class PIDController:
         Pduty = self._Kp*error
         
         _Iduty_new = self._Ki*error*(curr_time - self._last_time)
-        if      (self._Iduty > 0 and _Iduty_new < 0)
+        if (self._Iduty > 0 and _Iduty_new < 0) \
             or  (self._Iduty < 0 and _Iduty_new > 0):
             self._Iduty = _Iduty_new
         else:
