@@ -26,8 +26,10 @@ var NAVTREE =
 [
   [ "ME 405 Lab 2", "index.html", [
     [ "Introduction", "index.html#sec_intro", null ],
-    [ "Packages", "namespaces.html", [
-      [ "Packages", "namespaces.html", "namespaces_dup" ]
+    [ "PID Controller Class", "index.html#sec_con", null ],
+    [ "Plotter Program on PC", "index.html#sec_plt", null ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -46,7 +48,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_p_i_dmain_8py.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

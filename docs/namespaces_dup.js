@@ -3,9 +3,6 @@ var namespaces_dup =
     [ "encoder", null, [
       [ "EncoderDriver", "classencoder_1_1_encoder_driver.html", "classencoder_1_1_encoder_driver" ]
     ] ],
-    [ "main", null, [
-      [ "PPR", "main_8py.html#a01afdd2fcbe51b616f87f0424ff8c435", null ]
-    ] ],
     [ "motor", null, [
       [ "MotorDriver", "classmotor_1_1_motor_driver.html", "classmotor_1_1_motor_driver" ]
     ] ],
@@ -14,6 +11,9 @@ var namespaces_dup =
     ] ],
     [ "proportionalcontroller", null, [
       [ "ProportionalController", "classproportionalcontroller_1_1_proportional_controller.html", "classproportionalcontroller_1_1_proportional_controller" ]
+    ] ],
+    [ "proportionalmain", null, [
+      [ "PPR", "proportionalmain_8py.html#adb180846ee012da0f132c4448c300f9b", null ]
     ] ],
     [ "shares", "namespaceshares.html", "namespaceshares" ]
 ];
