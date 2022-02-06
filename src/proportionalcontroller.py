@@ -1,5 +1,7 @@
 '''!@file proportionalcontroller.py
-    A class that performs a closed loop proportional control.
+    A class that performs a closed loop proportional control. This was
+    developed before the pid controller. See pidcontroller.py  for the
+    controller used in main.
     
     @author     Tori Bornino
     @author     Jackson McLaughlin
